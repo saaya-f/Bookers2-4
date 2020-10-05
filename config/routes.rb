@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   patch "/books" => "books#create"
   delete "/books" => "books#destroy"
   resources :users, only: [:index, :show, :edit, :update] do
-    resources :relationships, only: [:create, :destroy]
+    member do
+      get :following, :followers
+    end
+    resource :relationships, only: [:create, :destroy]
   end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
