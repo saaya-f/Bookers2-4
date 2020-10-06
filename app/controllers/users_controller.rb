@@ -25,17 +25,15 @@ before_action :authenticate_user!
       render :edit
     end
   end
-  
-  def followings
+
+  def following
     @user = User.find(params[:id])
     @users = @user.followings
-    redirect_back(fallback_location: root_path)
   end
-  
+
   def followers
     @user = User.find(params[:id])
     @users = @user.followers
-    redirect_back(fallback_location: root_path)
   end
 
   private
